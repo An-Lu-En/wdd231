@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Standard responsive webpage practice.">
+        <meta name="author" content="Annalucia Awa">
+        <title>Document</title>
+
+        <link rel="stylesheet" href="styles/mysmall.css"  media="screen and (max-width: 799px)">
+        <link rel="stylesheet" href="styles/mylarger.css" media="screen and (min-width: 800px)">
+        <script src="scripts/scripts.js" defer></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+           <div class="logo-container">
+                <img src="images/logo.svg" alt="Site Logo" class="logo" />
+                <span class="site-name">Annalucia Awa</span>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu">
+            ☰
+            </button>
+
+            <nav id="primaryNav" class="nav-menu">
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Chamber</a></li>
+                    <li><a href="#">Final</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h1>Home</h1>
+
+            <section class="about-section">
+                <div class="about">
+                <h2>About Me</h2>
+               <p> 
+                Annalucia Awa is a passionate and detail-oriented student of Web and Computer Programming, 
+                known for her creativity, dedication, and growing expertise in front-end web development. 
+                She has developed a strong foundation in HTML, CSS, and JavaScript, using these skills to 
+                create responsive and accessible websites that balance visual design with functionality. 
+                Through projects like her vacay planner website, product review form, and interactive 
+                course display, Annalucia has demonstrated a clear understanding of modern web design principles 
+                and user experience. She approaches every project with focus, patience, and curiosity, continuously 
+                refining her craft and exploring new ways to make digital experiences both beautiful and meaningful.
+                With a natural eye for design and a problem-solver's mindset, Annalucia is steadily building 
+                her path toward becoming a skilled front-end developer who blends creativity, usability, and 
+                technology in everything she creates. 
+               </p>
+                </div>
+
+                <div class="photo">
+                <h2>Student Photo</h2>
+                <img src="images/student_profile.jpg" alt="Photo of Annalucia Awa" />
+                </div>
+            </section>
+
+            <section class="courses-section">
+                <h2>Web Certificate Courses</h2>
+
+                <div class="filter-buttons">
+                    <button id="allBtn" class="active">All</button>
+                    <button id="cseBtn">CSE</button>
+                    <button id="wddBtn">WDD</button>
+                </div>
+
+               <!-- <div class="course-list">
+                    <div class="course-card">CSE 110</div>
+                    <div class="course-card">WDD 130</div>
+                    <div class="course-card">CSE 111</div>
+                    <div class="course-card">CSE 210</div>
+                    <div class="course-card">WDD 131</div>
+                    <div class="course-card">WDD 231</div>
+                </div> -->
+
+                <div id="courseContainer" class="course-container"></div>
+
+                <p class="credits">Total Credits of course listed above is: <span id="totalCredits"></span></p>
+            </section>
+
+            <section class="social-section">
+                <a href="https://github.com" target="_blank" aria-label="GitHub">
+                    <img src="images/github.svg" alt="GitHub Icon" width="24" height="24" />
+                </a>
+                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+                    <img src="images/linkedin.svg" alt="LinkedIn Icon" width="24" height="24" />
+                </a>
+                <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+                    <img src="images/twitter.svg" alt="Twitter Icon" width="24" height="24" />
+                </a>
+            </section>
+        </main>
+
+        <footer> 
+            <p>© <span id="currentyear"></span> Nigeria.</p>
+                <p>Last Updated: <span id="lastmodified"></span></p>
+        </footer>
+    </body>
+</html>

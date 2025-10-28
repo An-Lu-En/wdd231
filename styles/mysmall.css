@@ -1,0 +1,256 @@
+/* Small Screen Styles (mysmall.css) */
+
+body {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #222;
+}
+
+/* HEADER */
+header {
+  background-color: #004d40;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  position: relative;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+.site-name {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Hamburger (menu button) */
+.menu-toggle {
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* NAVIGATION */
+.nav-menu {
+  display: none;
+  background-color: #004d40;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+}
+
+.nav-menu.open {
+  display: block;
+}
+
+.nav-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu a {
+  display: block;
+  padding: 0.75rem;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  background-color: #00796b;
+}
+
+
+/* MAIN */
+/* MAIN STRUCTURE */
+main {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #222;
+  background-color: #f4f6f5;
+}
+
+main h1 {
+  text-align: left;
+  color: #111;
+  margin-bottom: 1rem;
+}
+
+/* ABOUT SECTION */
+.about-section {
+  /* display: grid;
+  grid-template-columns: 2fr 1fr; */
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.about, .photo {
+  background-color: #eaeaea;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.about h2, .photo h2 {
+  background-color: #333;
+  color: white;
+  padding: 0.5rem;
+  text-align: center;
+  margin-top: 0;
+}
+
+.photo img {
+    display: flex;
+  flex-direction: column;     
+  align-items: center;        
+  justify-content: center; 
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  margin: 1rem auto 0;
+  border-radius: 5px;
+  background-color: #ccc; /* placeholder color */
+}
+
+
+/* === Courses Section Small View === */
+.courses-section {
+    padding: 1rem;
+    background-color: #f5f7f5;
+    text-align: center;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.filter-buttons button {
+    background-color: #2e8b57;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.filter-buttons button:hover,
+.filter-buttons button.active {
+    background-color: #256b44;
+    transform: scale(1.05);
+}
+
+.course-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.course-code {
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    font-weight: bold;
+    width: fit-content;
+    min-width: 100px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* Completed courses — green */
+.course-code.completed {
+    background-color: #d9f7df;
+    border: 2px solid #2e8b57;
+    color: #2e8b57;
+}
+
+/* Incomplete courses — light gray */
+.course-code.incomplete {
+    background-color: #eee;
+    border: 2px solid #aaa;
+    color: #666;
+}
+
+.course-code:hover {
+    transform: scale(1.05);
+}
+
+.credits {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #2e8b57;
+}
+
+
+
+/* SOCIAL SECTION */
+.social-section {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.social-section img {
+  width: 32px;
+  height: 32px;
+  filter: brightness(0);
+  transition: transform 0.3s;
+}
+
+.social-section img:hover {
+  transform: scale(1.1);
+}
+
+/* FOOTER */
+footer {
+  background-color: #004d40;
+  color: white;
+  text-align: center;
+  padding: 1.2rem 0.5rem;
+}
+
+footer .socials {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+footer .socials img {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s;
+}
+
+footer .socials img:hover {
+  transform: scale(1.1);
+}
+
+footer p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
