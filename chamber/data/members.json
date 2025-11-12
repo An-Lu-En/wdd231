@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Riverton Coffee Co.",
+    "address": "12 River Lane, Riverton, RV 10001",
+    "phone": "+1 (555) 101-0101",
+    "website": "https://rivertoncoffee.example",
+    "image": "images/company1.jpg",
+    "membershipLevel": 3,
+    "description": "Specialty coffee roaster and café since 2010.",
+    "membershipSince": "2015-06-01"
+  },
+  {
+    "name": "Maple Boutique",
+    "address": "45 Market St, Riverton, RV 10002",
+    "phone": "+1 (555) 202-0202",
+    "website": "https://mapleboutique.example",
+    "image": "images/company2.jpg",
+    "membershipLevel": 2,
+    "description": "Curated apparel and accessories for modern styles.",
+    "membershipSince": "2018-09-15"
+  },
+  {
+    "name": "RiverTech Solutions",
+    "address": "200 Tech Park, Riverton, RV 10003",
+    "phone": "+1 (555) 303-0303",
+    "website": "https://rivertech.example",
+    "image": "images/company3.jpg",
+    "membershipLevel": 3,
+    "description": "IT services and software development.",
+    "membershipSince": "2012-03-22"
+  },
+  {
+    "name": "Green Valley Nursery",
+    "address": "77 Garden Rd, Riverton, RV 10012",
+    "phone": "+1 (555) 404-0404",
+    "website": "https://greenvalley.example",
+    "image": "images/company4.jpg",
+    "membershipLevel": 1,
+    "description": "Plants, landscaping supplies and advice.",
+    "membershipSince": "2020-07-08"
+  },
+  {
+    "name": "Summit Real Estate",
+    "address": "9 Summit Ave, Riverton, RV 10004",
+    "phone": "+1 (555) 505-0505",
+    "website": "https://summitrealty.example",
+    "image": "images/company5.jpg",
+    "membershipLevel": 2,
+    "description": "Residential and commercial property experts.",
+    "membershipSince": "2017-11-01"
+  },
+  {
+    "name": "Harbor Fitness Studio",
+    "address": "321 Dockside Blvd, Riverton, RV 10005",
+    "phone": "+1 (555) 606-0606",
+    "website": "https://harborfitness.example",
+    "image": "images/company6.jpg",
+    "membershipLevel": 1,
+    "description": "Small-group training and wellness classes.",
+    "membershipSince": "2021-02-18"
+  },
+  {
+    "name": "BlueWave Travel",
+    "address": "58 Ocean Dr, Riverton, RV 10006",
+    "phone": "+1 (555) 707-0707",
+    "website": "https://bluewavetravel.example",
+    "image": "images/company7.jpg",
+    "membershipLevel": 3,
+    "description": "Local travel agency and tours.",
+    "membershipSince": "2009-05-04"
+  },
+  {
+    "name": "Lighthouse Bookstore",
+    "address": "88 Harbor St, Riverton, RV 10007",
+    "phone": "+1 (555) 808-0808",
+    "website": "https://lighthousebooks.example",
+    "image": "images/company8.jpg",
+    "membershipLevel": 2,
+    "description": "Independent bookstore with local author events.",
+    "membershipSince": "2016-08-12"
+  }
+]

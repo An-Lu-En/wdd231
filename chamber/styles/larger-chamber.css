@@ -1,0 +1,248 @@
+:root{
+  --brand:#1b6ca8;
+  --muted:#666;
+  --bg:#f7f9fb;
+  --card:#ffffff;
+  --gold:#f3d58a;
+  --silver:#d6d6d6;
+  --member:#e6f7ff;
+  --radius:12px;
+  --max-width:1100px;
+  --gap:1rem;
+  font-family: "League Spartan", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+body{
+  background:var(--bg);
+  color:#222;
+  line-height:1.4;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding-bottom:3rem;
+}
+
+.container{
+  width:min(94%, var(--max-width));
+  margin:0 auto;
+}
+
+/* Header */
+.site-header{
+  background:linear-gradient(90deg,var(--brand),#0f5686);
+  color:white;
+  padding:.5rem 0;
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+
+.header-inner{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  justify-content:space-between;
+}
+
+.brand { 
+    display:flex; 
+    align-items:center; 
+    gap:.5rem; 
+    color:white; 
+    font-weight:700; 
+}
+
+.brand .logo{ 
+    width:40px; 
+    height:40px;
+    display:block; 
+}
+
+.main-nav ul{ 
+    display:flex; 
+    gap:1rem; 
+    align-items:center; 
+}
+
+.main-nav a{ 
+    color:white; 
+    padding:.5rem .6rem; 
+    border-radius:8px;
+}
+
+.main-nav a.active, .main-nav a:hover{ 
+    background:rgba(255,255,255,.08); 
+}
+
+/* Hamburger for small screens */
+.hamburger{ 
+    display:none; 
+    color:white; 
+    font-size:1.3rem; 
+    background:transparent; 
+    border:none; 
+}
+
+@media (max-width:720px){
+  .main-nav{ 
+    display:none; 
+    position:absolute; 
+    top:64px; 
+    right:1rem; 
+    background:white; 
+    color:#222; 
+    border-radius:8px; 
+    box-shadow:0 6px 18px 
+    rgba(0,0,0,.12); 
+    padding:.6rem; 
+}
+
+  .main-nav ul{ 
+    flex-direction:column; 
+}
+  .hamburger{ 
+    display:block; 
+}
+  .header-inner{ 
+    position:relative; 
+}
+}
+
+/* Controls */
+.controls{ margin:1rem 0; }
+.view-controls
+{ 
+    display:flex; 
+    gap:.5rem; 
+    align-items:center; 
+    flex-wrap:wrap; 
+}
+
+.control-btn{
+  background:var(--card);
+  padding:.4rem .7rem;
+  border-radius:8px;
+  box-shadow:0 1px 3px rgba(0,0,0,.06);
+}
+
+.control-btn[aria-pressed="true"]
+{ 
+    outline:3px solid rgba(27,108,168,.2); 
+}
+
+/* Directory */
+.directory{
+  display:grid;
+  gap:var(--gap);
+  margin-bottom:2rem;
+}
+
+/* Grid layout */
+.directory.grid
+{
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* List layout (one column with long rows) */
+.directory.list
+{
+  grid-template-columns: 1fr;
+}
+
+/* Member card */
+.member-card
+{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:1rem;
+  box-shadow:0 6px 18px rgba(13,38,59,.04);
+  display:flex;
+  gap:1rem;
+  align-items:flex-start;
+}
+.member-card .thumb
+{
+  flex:0 0 86px;
+  width:86px;
+  height:86px;
+  border-radius:8px;
+  overflow:hidden;
+  background:var(--member);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.member-card img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* Card body */
+.member-info{ flex:1; min-width:0; }
+.member-info h3{ font-size:1.05rem; margin-bottom:.25rem; color:var(--brand); }
+.meta{ color:var(--muted); font-size:.9rem; margin-bottom:.45rem; }
+.member-info p{ font-size:.95rem; margin-bottom:.45rem; color:#333; }
+.member-actions{ display:flex; gap:.5rem; align-items:center; flex-wrap:wrap; }
+
+/* Membership badge */
+.badge{
+  padding:.25rem .5rem;
+  border-radius:999px;
+  font-weight:600;
+  font-size:.82rem;
+}
+.badge.level-3{ background:var(--gold); color:#5a3d00; }
+.badge.level-2{ background:var(--silver); color:#222; }
+.badge.level-1{ background:var(--member); color:#0b556e; }
+
+/* Footer */
+.site-footer
+{
+background:#fff; 
+margin-top:1rem; 
+padding:1rem 0; 
+box-shadow:0 -2px 8px rgba(0,0,0,.03); 
+}
+
+.footer-inner
+{
+display:flex; 
+gap:2rem; 
+justify-content:space-between; 
+align-items:flex-start; 
+flex-wrap:wrap; 
+}
+
+.dev-info p
+{ 
+color:var(--muted); 
+font-size:.9rem; 
+}
+
+/* Accessibility helpers */
+.visually-hidden{
+  position:absolute !important;
+  height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px);
+  white-space:nowrap; border:0; padding:0; margin:-1px;
+}
+
+/* Responsive tweaks */
+@media (max-width:720px){
+  .member-card{ flex-direction:row; }
+  .thumb{ width:80px; height:80px; }
+  .footer-inner{ flex-direction:column; gap:0.75rem; }
+}
+
+.social-links{
+  display:flex;
+  gap:.6rem;
+  align-items:center;
+  margin:0.5rem 0;
+}
+
+.social-links a img{
+  width:28px;
+  height:28px;
+  display:block;
+  filter: grayscale(100%);
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.social-links a img:hover{
+  filter: none;
+  transform: scale(1.1);
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="This webpage is part of a web development practice project. It focuses on learning how to correctly add a favicon, use meta tags, and apply responsive design techniques. The page also experiments with fonts, including Famicom, to improve styling and front-end development skills.">
+        <meta name="author" content="Annalucia Awa">
+        <title>Favicon</title>
+
+        <link rel="icon" href="images/favicon.ico">
+
+        <meta property="og:title" content="Sunset Plains Chamber Directory">
+        <meta property="og:description" content="Discover local businesses and partners that make up the Sunset Plains Chamber of Commerce.">
+        <meta property="og:image" content="https://an-lu-en.github.io/wdd231/chamber/images/favicon.ico">
+        <meta property="og:url" content="https://an-lu-en.github.io/wdd231/chamber/directory.html">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Sunset Plains Chamber of Commerce">
+        <meta property="og:locale" content="en_US">
+
+        <link rel="stylesheet" href="styles/smaller-chamber.css">
+        <link rel="stylesheet" href="styles/larger-chamber.css">
+
+        <script src="scripts/chamber.js" defer></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header class="site-header">
+            <h1>Sunset Plains Chamber Directory</h1>     
+            <div class="container header-inner">
+                <a class="brand" href="#">
+                    <img src="images/favicon.ico" alt="Sunset Plains Chamber logo" class="logo">
+                    <span class="brand-text">Sunset Plains Chamber</span>
+                </a>
+
+                <button id="menuToggle" class="hamburger" aria-expanded="false" aria-controls="mainNav">
+                    ☰
+                </button>
+
+                <nav id="mainNav" class="main-nav" aria-label="Main navigation">
+                    <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="directory.html" class="active">Directory</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+       <main class="container">
+            <section class="controls">
+                <div class="view-controls" role="toolbar" aria-label="View controls">
+                    <label for="viewGrid" class="visually-hidden">Grid view</label>
+                    <button id="gridBtn" class="control-btn" aria-pressed="true" title="Grid view">Grid</button>
+
+                    <label for="viewList" class="visually-hidden">List view</label>
+                    <button id="listBtn" class="control-btn" aria-pressed="false" title="List view">List</button>
+
+                    <label for="membershipFilter">Membership</label>
+                    <select id="membershipFilter" aria-label="Filter by membership level">
+                    <option value="all">All members</option>
+                    <option value="1">Member</option>
+                    <option value="2">Silver</option>
+                    <option value="3">Gold</option>
+                    </select>
+                </div>
+            </section>
+
+            <section id="directory" class="directory grid" aria-live="polite">
+            <!-- Member cards will be injected here by chamber.js -->
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="container footer-inner">
+                <div class="contact">
+                    <h4>Contact</h4>
+                    <p>Sunset Plains Chamber of Commerce</p>
+                    <p>123 River St, Sunset Plains</p>
+                    <p><a href="tel:+15551234567">+1 (555) 123-4567</a></p>
+                </div> 
+                
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank" rel="noopener">
+                        <img src="images/facebook.svg" alt="Facebook">
+                    </a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener">
+                        <img src="images/twitter.svg" alt="Twitter">
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener">
+                        <img src="images/instagram.svg" alt="Instagram">
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener">
+                        <img src="images/linkedin.svg" alt="LinkedIn">
+                    </a>
+                    <a href="https://github.com" target="_blank" rel="noopener">
+                        <img src="images/github.svg" alt="GitHub">
+                    </a>
+                </div>
+
+                <div class="dev-info">
+                    <p>Website by: <strong>Annalucia Awa</strong> — WDD 231</p>
+                    <p>Last modified: <span id="lastModified">—</span></p>
+                    <p>&copy; <span id="copyYear"></span> Sunset Plains Chamber</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
