@@ -1,4 +1,4 @@
-:root{
+/* :root{
   --brand:#1b6ca8;
   --muted:#666;
   --bg:#f7f9fb;
@@ -24,10 +24,10 @@ body{
 .container{
   width:min(94%, var(--max-width));
   margin:0 auto;
-}
+} */
 
 /* Header */
-.site-header{
+/* .site-header{
   background:linear-gradient(90deg,var(--brand),#0f5686);
   color:white;
   padding:.5rem 0;
@@ -69,10 +69,10 @@ body{
 
 .main-nav a.active, .main-nav a:hover{ 
     background:rgba(255,255,255,.08); 
-}
+} */
 
 /* Hamburger for small screens */
-.hamburger{ 
+/* .hamburger{ 
     display:none; 
     color:white; 
     font-size:1.3rem; 
@@ -103,10 +103,10 @@ body{
   .header-inner{ 
     position:relative; 
 }
-}
+} */
 
 /* Controls */
-.controls{ margin:1rem 0; }
+/* .controls{ margin:1rem 0; }
 .view-controls
 { 
     display:flex; 
@@ -125,29 +125,29 @@ body{
 .control-btn[aria-pressed="true"]
 { 
     outline:3px solid rgba(27,108,168,.2); 
-}
+} */
 
 /* Directory */
-.directory{
+/* .directory{
   display:grid;
   gap:var(--gap);
   margin-bottom:2rem;
-}
+} */
 
 /* Grid layout */
-.directory.grid
+/* .directory.grid
 {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
+} */
 
 /* List layout (one column with long rows) */
-.directory.list
+/* .directory.list
 {
   grid-template-columns: 1fr;
-}
+} */
 
 /* Member card */
-.member-card
+/* .member-card
 {
   background:var(--card);
   border-radius:var(--radius);
@@ -169,17 +169,17 @@ body{
   align-items:center;
   justify-content:center;
 }
-.member-card img{ width:100%; height:100%; object-fit:cover; display:block; }
+.member-card img{ width:100%; height:100%; object-fit:cover; display:block; } */
 
 /* Card body */
-.member-info{ flex:1; min-width:0; }
+/* .member-info{ flex:1; min-width:0; }
 .member-info h3{ font-size:1.05rem; margin-bottom:.25rem; color:var(--brand); }
 .meta{ color:var(--muted); font-size:.9rem; margin-bottom:.45rem; }
 .member-info p{ font-size:.95rem; margin-bottom:.45rem; color:#333; }
-.member-actions{ display:flex; gap:.5rem; align-items:center; flex-wrap:wrap; }
+.member-actions{ display:flex; gap:.5rem; align-items:center; flex-wrap:wrap; } */
 
 /* Membership badge */
-.badge{
+/* .badge{
   padding:.25rem .5rem;
   border-radius:999px;
   font-weight:600;
@@ -187,10 +187,10 @@ body{
 }
 .badge.level-3{ background:var(--gold); color:#5a3d00; }
 .badge.level-2{ background:var(--silver); color:#222; }
-.badge.level-1{ background:var(--member); color:#0b556e; }
+.badge.level-1{ background:var(--member); color:#0b556e; } */
 
 /* Footer */
-.site-footer
+/* .site-footer
 {
 background:#fff; 
 margin-top:1rem; 
@@ -211,17 +211,17 @@ flex-wrap:wrap;
 { 
 color:var(--muted); 
 font-size:.9rem; 
-}
+} */
 
 /* Accessibility helpers */
-.visually-hidden{
+/* .visually-hidden{
   position:absolute !important;
   height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px);
   white-space:nowrap; border:0; padding:0; margin:-1px;
-}
+} */
 
 /* Responsive tweaks */
-@media (max-width:720px){
+/* @media (max-width:720px){
   .member-card{ flex-direction:row; }
   .thumb{ width:80px; height:80px; }
   .footer-inner{ flex-direction:column; gap:0.75rem; }
@@ -245,4 +245,69 @@ font-size:.9rem;
 .social-links a img:hover{
   filter: none;
   transform: scale(1.1);
+} */
+
+/* larger-chamber.css
+   Styles for widths >= 760px (desktop/tablet)
+*/
+@media (min-width: 760px) {
+  .main-nav {
+    display: block;
+  }
+  .main-nav ul {
+    flex-direction: row;
+    gap: .5rem;
+  }
+
+  .container.header-inner {
+    padding: 0 0;
+  }
+
+  .hero {
+    min-height: 320px;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    padding-left: 3rem;
+  }
+  .hero h2 {
+    font-size: 2rem;
+    background: rgba(0,0,0,0.28);
+    padding: .8rem 1rem;
+  }
+
+  /* Directory grid switches to multi-column */
+  .directory.grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .member-card {
+    grid-template-columns: 1fr;
+    min-height: 180px;
+    grid-auto-rows: 1fr;
+  }
+  .member-card .member-info {
+    padding: 1rem;
+  }
+  .member-card img.logo-thumb {
+    width: 100%;
+    height: 120px;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .directory.list {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: start;
+  }
+
+  .spotlight-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
+

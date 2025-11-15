@@ -1,5 +1,5 @@
 /* normalize.css - minimal reset */
-html { 
+/* html { 
     box-sizing: border-box; 
 }
 
@@ -40,4 +40,251 @@ button {
     background: none; 
     border: none; 
     cursor: pointer; 
+} */
+
+/* smaller-chamber.css
+   Mobile-first / base rules. Put this file before larger-chamber.css in head.
+*/
+
+/* Simple normalize-ish reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Bricolage Grotesque', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  line-height: 1.35;
+  background: #fbfbfb;
+  color: #222;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* Layout utilities */
+.container {
+  width: 92%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header */
+.site-header {
+  background: linear-gradient(90deg, #0b3d91, #1060c9);
+  color: #fff;
+  padding: 1rem 0;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  color: #fff;
+}
+.logo {
+  width: 44px;
+  height: 44px;
+  display: block;
+}
+.brand-text {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+/* Hamburger */
+.hamburger {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+/* Primary nav (mobile: hidden until toggled) */
+.main-nav {
+  display: none; /* toggled on by JS for small screens */
+}
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.main-nav a {
+  display:block;
+  padding: .5rem;
+  color: #fff;
+  border-radius: 6px;
+}
+.main-nav a.active {
+  background: rgba(255,255,255,0.12);
+}
+
+/* Hero (for index page) */
+.hero {
+  text-align: center;
+  padding: 1.25rem 0;
+  background: url("../images/hero.png") center/cover no-repeat;
+  color: #fff;
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+}
+.hero h2 {
+  background: rgba(0,0,0,0.35);
+  padding: .6rem 1rem;
+  border-radius: 6px;
+  font-size: 1.25rem;
+}
+.cta {
+  display: inline-block;
+  margin-top: .75rem;
+  background: #ffbe00;
+  color: #0a0a0a;
+  padding: .6rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+/* Main content layouts */
+.controls {
+  margin: 1rem 0;
+  padding: .6rem 0;
+}
+.view-controls {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.control-btn {
+  padding: .4rem .6rem;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #fff;
+  cursor: pointer;
+}
+.control-btn[aria-pressed="true"] {
+  background: #1060c9;
+  color: #fff;
+  border-color: #0b3d91;
+}
+
+/* Directory: grid cards on mobile -> single-column stacked cards */
+.directory {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  margin-bottom: 2.5rem;
+}
+
+/* card */
+.member-card {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: .8rem;
+  align-items: center;
+  padding: .75rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(16,24,40,0.06);
+  border: 1px solid rgba(16,24,40,0.03);
+}
+.member-card img.logo-thumb {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #eee;
+  display: block;
+}
+.member-info h3 {
+  font-size: 1rem;
+  margin-bottom: .2rem;
+}
+.member-info p {
+  font-size: .88rem;
+  color: #444;
+  margin-bottom: .25rem;
+}
+.member-actions {
+  margin-top: .4rem;
+  display:flex;
+  gap:.5rem;
+  flex-wrap:wrap;
+}
+.member-actions a {
+  font-size:.82rem;
+  padding:.35rem .5rem;
+  border-radius:6px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #f8fafc;
+}
+
+/* List view adjusts */
+.directory.list .member-card {
+  grid-template-columns: 1fr;
+}
+
+/* footer */
+.site-footer {
+  background: #0b2f6a;
+  color: #fff;
+  padding: 1rem 0;
+}
+.footer-inner {
+  display: grid;
+  gap: .8rem;
+  grid-template-columns: 1fr;
+}
+.site-footer a { color: #fff; }
+
+/* Utilities */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* Spotlight (index) */
+.spotlight-cards {
+  display: grid;
+  gap: .8rem;
+  grid-template-columns: 1fr;
+}
+
+/* Weather */
+.weather {
+  background: rgba(255,255,255,0.9);
+  padding: .6rem;
+  border-radius: 10px;
+  margin: 1rem 0;
+}
+
+/* small images/icons in social links row */
+.social-links img {
+  width: 28px;
+  height: 28px;
+  display:inline-block;
+  vertical-align:middle;
+  margin-right:.4rem;
+}
+
+/* Small screen: spacing tweaks */
+@media (max-width: 420px) {
+  .brand-text { display: none; }
+  .header-inner { gap: .4rem; }
+  .member-card { gap: .6rem; }
 }

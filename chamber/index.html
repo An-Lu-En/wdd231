@@ -41,8 +41,8 @@
 
                 <nav id="mainNav" class="main-nav" aria-label="Main navigation">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="directory.html" class="active">Directory</a></li>
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="directory.html">Directory</a></li>
                         <li><a href="#">Events</a></li>
                         <li><a href="#">About</a></li>
                         <li><a href="#">Contact</a></li>
@@ -51,31 +51,33 @@
             </div>
         </header>
 
-       <main class="container">
-            <section class="controls">
-                <div class="view-controls" role="toolbar" aria-label="View controls">
-                    <label for="viewGrid" class="visually-hidden">Grid view</label>
-                    <button id="gridBtn" class="control-btn" aria-pressed="true" title="Grid view">Grid</button>
-
-                    <label for="viewList" class="visually-hidden">List view</label>
-                    <button id="listBtn" class="control-btn" aria-pressed="false" title="List view">List</button>
-
-                    <label for="membershipFilter">Membership</label>
-                    <select id="membershipFilter" aria-label="Filter by membership level">
-                    <option value="all">All members</option>
-                    <option value="1">Member</option>
-                    <option value="2">Silver</option>
-                    <option value="3">Gold</option>
-                    </select>
-                </div>
+        <main>
+            <section class="hero">
+                <h2>Welcome to the Sunset Plains Chamber of Commerce</h2>
+                <img src="images/hero.png" alt="Business district">
+                <a href="#" class="cta">Join the Chamber</a>
             </section>
 
-            <section id="directory" class="directory grid" aria-live="polite">
-            <!-- Member cards will be injected here by chamber.js -->
+            <section class="events">
+                <h2>Current Events</h2>
+                <p></p>
+            </section>
+
+            <section class="weather">
+                <h2>Weather</h2>
+                <p id="current-temp"></p>
+                <p id="weather-desc"></p>
+
+                <div id="forecast"></div>
+            </section>
+
+            <section class="spotlight">
+                <h2>Member Spotlight</h2>
+                <div id="spotlight-container"></div>
             </section>
         </main>
 
-        <footer class="site-footer">
+         <footer class="site-footer">
             <div class="container footer-inner">
                 <div class="contact">
                     <h4>Contact</h4>
