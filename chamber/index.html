@@ -60,11 +60,76 @@
 
             <section class="events">
                 <h2>Current Events</h2>
-                <p></p>
+                <div class="events-showcase">
+                    <div class="event-featured" role="article" aria-labelledby="featured-title">
+                        <div class="event-media" style="background-image: url('images/events/featured-mixer.jpg');" aria-hidden="true"></div>
+                        <div class="event-content">
+                            <span class="badge">Featured</span>
+                            <h3 id="featured-title">Sunset Business Mixer</h3>
+                            <p class="meta">
+                                <time datetime="2025-12-03T18:00">Dec 3 • 6:00 PM</time> — Riverview Hall
+                            </p>
+                            <p class="lead">
+                                Network with local business owners, enjoy light bites, and hear a short presentation from our guest speaker about sustainable growth for small businesses.
+                            </p>
+                            <div class="event-actions">
+                                <a class="btn primary" href="#" role="button">RSVP Now</a>
+                                <a class="btn ghost" href="#" role="button">Add to Calendar</a>
+                            </div>
+                            <p class="spots">Limited spots • <strong>20 remaining</strong></p>
+                        </div>
+                    </div>
+
+                    <ul class="events-list" aria-label="Upcoming events">
+                        <li class="event-card" role="listitem">
+                            <img src="images/company1.jpg" alt="Farmers market stalls" class="thumb">
+                            <div class="card-body">
+                                <h4>Sunset Farmers Market</h4>
+                                <p class="meta"><time datetime="2025-11-29">Nov 29</time> • 9:00 AM — Market Square</p>
+                                <p class="small">Local producers, kids activities, live music. Free entry.</p>
+                                <div class="card-actions">
+                                    <a class="btn" href="#">Learn More</a>
+                                    <a class="btn" href="#">Volunteer</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="event-card" role="listitem">
+                            <img src="images/company5.jpg" alt="Outdoor concert" class="thumb">
+                            <div class="card-body">
+                                <h4>Summer Concert on the Green</h4>
+                                <p class="meta"><time datetime="2026-01-15">Jan 15</time> • 7:30 PM — Green Park</p>
+                                <p class="small">Bring a blanket and enjoy a free evening of local bands and food trucks.</p>
+                                <div class="card-actions">
+                                    <a class="btn" href="#">Get Tickets</a>
+                                    <span class="tag">Family friendly</span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="event-card" role="listitem">
+                            <img src="images/company8.jpg" alt="Business workshop" class="thumb">
+                            <div class="card-body">
+                                <h4>Small Biz Digital Workshop</h4>
+                                <p class="meta"><time datetime="2025-12-10">Dec 10</time> • 1:00 PM — Community Center</p>
+                                <p class="small">Hands-on session: improve your online presence and grow sales. Seats by registration only.</p>
+                                <div class="card-actions">
+                                    <a class="btn" href="#">Register</a>
+                                    <span class="tag soldout">Almost full</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="events-footer">
+                        <p>Want your event featured? <a href="#">Submit an event</a> or become a sponsor to appear in the spotlight.</p>
+                    </div>
+                </div>
             </section>
 
             <section class="weather">
                 <h2>Weather</h2>
+                <div id="weatherapi-weather-widget-4"></div><script type='text/javascript' src='https://www.weatherapi.com/weather/widget.ashx?loc=1735825&wid=4&tu=1&div=weatherapi-weather-widget-4' async></script><noscript><a href="https://www.weatherapi.com/weather/q/makoko-1735825" alt="Hour by hour Makoko weather">10 day hour by hour Makoko weather</a></noscript>
                 <p id="current-temp"></p>
                 <p id="weather-desc"></p>
 

@@ -247,10 +247,8 @@ font-size:.9rem;
   transform: scale(1.1);
 } */
 
-/* larger-chamber.css
-   Styles for widths >= 760px (desktop/tablet)
-*/
-@media (min-width: 760px) {
+
+ @media (min-width: 760px) {
   .main-nav {
     display: block;
   }
@@ -278,7 +276,7 @@ font-size:.9rem;
     padding: .8rem 1rem;
   }
 
-  /* Directory grid switches to multi-column */
+
   .directory.grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -311,3 +309,15 @@ font-size:.9rem;
   }
 }
 
+/* LARGER SCREENS */
+@media(min-width:768px){
+  /* FEATURED EVENT */
+  .event-featured{flex-direction:row;height:220px;}
+  .event-featured .event-media{width:40%;height:100%;}
+  .event-featured .event-content{width:60%;padding:1rem 1.25rem;}
+
+  /* EVENTS LIST GRID */
+  .events-list{flex-direction:row;flex-wrap:wrap;gap:1rem;}
+  .event-card{flex:1 1 calc(33% - 1rem);}
+
+}

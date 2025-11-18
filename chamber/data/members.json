@@ -10,6 +10,16 @@
     "membershipSince": "2015-06-01"
   },
   {
+    "name": "Sunset Diner",
+    "address": "34 Sunset Blvd, Riverton, RV 10011",
+    "phone": "+1 (555) 111-1111",
+    "website": "https://sunsetdiner.example",
+    "image": "images/company1.jpg",
+    "membershipLevel": 1,
+    "description": "Classic American diner with a modern twist.",
+    "membershipSince": "2019-04-20"
+  },
+  {
     "name": "Maple Boutique",
     "address": "45 Market St, Riverton, RV 10002",
     "phone": "+1 (555) 202-0202",
