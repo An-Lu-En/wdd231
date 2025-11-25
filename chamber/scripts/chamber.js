@@ -18,7 +18,7 @@ function initMenuToggle() {
     toggle.setAttribute('aria-expanded', String(!expanded));
     // simple show/hide
     if (!expanded) {
-      nav.style.display = 'block';
+      openMenu();
     } else {
       nav.style.display = '';
     }
