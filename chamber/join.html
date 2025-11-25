@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="This chamber webpage home page introduces visitors to our community, local busonesses, and upcoming events. It shares useful information, current weather updates, and business spotlight to help people stay informed. This page also invites users to join the chamber and learn about the benefits of membership. Everything is designed to support growth and connection within the community.">
+        <meta name="author" content="Annalucia Awa">
+        <title>Events. Join the Chamber | Sunset Plains</title>
+
+        <link rel="icon" href="images/favicon.ico">
+
+        <meta property="og:title" content="">
+        <meta property="og:description" content="Discover local businesses and partners that make up the Sunset Plains Chamber of Commerce.">
+        <meta property="og:image" content="https://an-lu-en.github.io/wdd231/chamber/images/favicon.ico">
+        <meta property="og:url" content="https://an-lu-en.github.io/wdd231/chamber/directory.html">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Sunset Plains Chamber of Commerce">
+        <meta property="og:locale" content="en_US">
+
+        <link rel="stylesheet" href="styles/smaller-chamber.css">
+        <link rel="stylesheet" href="styles/larger-chamber.css">
+
+        <script src="scripts/chamber.js" defer></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header class="site-header">
+            <h1>Sunset Plains Chamber Directory</h1>     
+            <div class="container header-inner">
+                <a class="brand" href="#">
+                    <img src="images/favicon.ico" alt="Sunset Plains Chamber logo" class="logo">
+                    <span class="brand-text">Sunset Plains Chamber</span>
+                </a>
+
+                <button id="menuToggle" class="hamburger" aria-expanded="false" aria-controls="mainNav">
+                    ☰
+                </button>
+
+                <nav id="mainNav" class="main-nav" aria-label="Main navigation">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="directory.html">Directory</a></li>
+                        <li><a href="join.html" class="active">Events</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!-- ...existing code... -->
+        <main class="join-main">
+            <section class="join-form-section">
+                <h1>Join the Sunset Plains Chamber</h1>
+                <form method="get" action="thankyou.html" id="membershipForm">
+                    <label for="firstName">First Name
+                        <input type="text" id="firstName" name="firstName" title="Enter your first name" autocomplete="given-name" required>
+                    </label>
+                    <label for="lastName">Last Name
+                        <input type="text" id="lastName" name="lastName" title="Enter your last name" autocomplete="family-name" required>
+                    </label>
+                    <label for="orgTitle">Organizational Title (Hint: e.g., Manager, Director)
+                        <input type="text" id="orgTitle" name="orgTitle" title="Your title in the organization" autocomplete="organization-title" pattern="[A-Za-z\-\s]{7,}" required>
+                    </label>
+                    <label for="email">Email
+                        <input type="email" id="email" name="email" title="Enter your email address" autocomplete="email" placeholder="example@email.com" required>
+                    </label>
+                    <label for="phone">Mobile Phone
+                        <input type="tel" id="phone" name="phone" title="Enter your mobile phone number" autocomplete="tel" required>
+                    </label>
+                    <label for="orgName">Business/Organization Name
+                        <input type="text" id="orgName" name="orgName" title="Business or organization name" autocomplete="organization" required>
+                    </label>
+                    <label for="membership">Membership Level
+                        <select id="membership" name="membership" title="Select membership level" required>
+                            <option value="np">NP Membership (Non-Profit, No Fee)</option>
+                            <option value="bronze">Bronze Membership</option>
+                            <option value="silver">Silver Membership</option>
+                            <option value="gold">Gold Membership</option>
+                        </select>
+                    </label>
+                    <label for="description">Business/Organization Description
+                        <textarea id="description" name="description" title="Describe your business or organization"></textarea>
+                    </label>
+                    <input type="hidden" id="timestamp" name="timestamp">
+                    <input type="submit" value="Apply for Membership">
+                </form>
+            </section>
+            <aside class="membership-cards">
+                <div class="card" id="np-card">
+                    <h2>NP Membership</h2>
+                    <a href="#np-modal" class="info-link" data-modal="np-modal">Benefits & Info</a>
+                </div>
+                <div class="card" id="bronze-card">
+                    <h2>Bronze Membership</h2>
+                    <a href="#bronze-modal" class="info-link" data-modal="bronze-modal">Benefits & Info</a>
+                </div>
+                <div class="card" id="silver-card">
+                    <h2>Silver Membership</h2>
+                    <a href="#silver-modal" class="info-link" data-modal="silver-modal">Benefits & Info</a>
+                </div>
+                <div class="card" id="gold-card">
+                    <h2>Gold Membership</h2>
+                    <a href="#gold-modal" class="info-link" data-modal="gold-modal">Benefits & Info</a>
+                </div>
+            </aside>
+            <!-- Modals for membership benefits -->
+            <div class="modal" id="np-modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-content">
+                    <h3>NP Membership Benefits</h3>
+                    <ul>
+                        <li>No membership fee</li>
+                        <li>Access to community events</li>
+                        <li>Networking opportunities</li>
+                    </ul>
+                    <button class="close-modal" data-close="np-modal">Close</button>
+                </div>
+            </div>
+            <div class="modal" id="bronze-modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-content">
+                    <h3>Bronze Membership Benefits</h3>
+                    <ul>
+                        <li>Event discounts</li>
+                        <li>Business directory listing</li>
+                        <li>Quarterly training sessions</li>
+                    </ul>
+                    <button class="close-modal" data-close="bronze-modal">Close</button>
+                </div>
+            </div>
+            <div class="modal" id="silver-modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-content">
+                    <h3>Silver Membership Benefits</h3>
+                    <ul>
+                        <li>All Bronze benefits</li>
+                        <li>Spotlight advertising</li>
+                        <li>Monthly training sessions</li>
+                    </ul>
+                    <button class="close-modal" data-close="silver-modal">Close</button>
+                </div>
+            </div>
+            <div class="modal" id="gold-modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-content">
+                    <h3>Gold Membership Benefits</h3>
+                    <ul>
+                        <li>All Silver benefits</li>
+                        <li>Exclusive event invitations</li>
+                        <li>Personalized business support</li>
+                    </ul>
+                    <button class="close-modal" data-close="gold-modal">Close</button>
+                </div>
+            </div>
+        </main>
+
+
+        <footer class="site-footer">
+            <div class="container footer-inner">
+                <div class="contact">
+                    <h4>Contact</h4>
+                    <p>Sunset Plains Chamber of Commerce</p>
+                    <p>123 River St, Sunset Plains</p>
+                    <p><a href="tel:+15551234567">+1 (555) 123-4567</a></p>
+                </div> 
+                
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank" rel="noopener">
+                        <img src="images/facebook.svg" alt="Facebook">
+                    </a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener">
+                        <img src="images/twitter.svg" alt="Twitter">
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener">
+                        <img src="images/instagram.svg" alt="Instagram">
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener">
+                        <img src="images/linkedin.svg" alt="LinkedIn">
+                    </a>
+                    <a href="https://github.com" target="_blank" rel="noopener">
+                        <img src="images/github.svg" alt="GitHub">
+                    </a>
+                </div>
+
+                <div class="dev-info">
+                    <p>Website by: <strong>Annalucia Awa</strong> — WDD 231</p>
+                    <p>Last modified: <span id="lastModified">—</span></p>
+                    <p>&copy; <span id="copyYear"></span> Sunset Plains Chamber</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

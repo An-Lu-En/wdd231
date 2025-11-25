@@ -1,31 +1,3 @@
-const membersJsonPath = 'data/members.json';
-
-document.addEventListener('DOMContentLoaded', () => {
-  initMenuToggle();
-  setFooterDates();
-  loadMembersAndRender();
-  setupViewControls();
-  initWeather();
-
-});
-function initMenuToggle() {
-  const toggle = document.getElementById('menuToggle');
-  const nav = document.getElementById('mainNav');
-  if (!toggle || !nav) return;
-
-  toggle.addEventListener('click', () => {
-    const expanded = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!expanded));
-    // simple show/hide
-    if (!expanded) {
-      openMenu();
-    } else {
-      nav.style.display = '';
-    }
-  });
-}
-
-
 function setFooterDates() {
   const lastModifiedEl = document.getElementById('lastModified');
   const copyYearEl = document.getElementById('copyYear');
@@ -39,6 +11,120 @@ function setFooterDates() {
     copyYearEl.textContent = new Date().getFullYear();
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  initMenuToggle();
+  setFooterDates();
+  loadMembersAndRender();
+  setupViewControls();
+  initWeather();
+});
+function initMenuToggle() {
+  const toggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('mainNav');
+  if (!toggle || !nav) return;
+
+  toggle.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    // simple show/hide
+    if (!expanded) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+
+  // Close menu on resize to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 720) {
+      nav.classList.remove('open');
+      nav.style.display = '';
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Optional: close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 720 && nav.classList.contains('open')) {
+      if (!nav.contains(e.target) && e.target !== toggle) {
+        closeMenu();
+      }
+    }
+  });
+}
+
+const membersJsonPath = 'members.json';
+
+// === DIRECTORY PAGE SETUP ===
+async function loadDirectory() {
+  const directory = document.getElementById("directory");
+  if (!directory) return;
+
+  try {
+    const response = await fetch('members.json');
+    const members = await response.json();
+
+    displayMembers(members);
+    setupFilters(members);
+  } catch (err) {
+    console.error("Error loading members:", err);
+    directory.innerHTML = "<p>Could not load directory data.</p>";
+  }
+}
+
+function displayMembers(members) {
+  const directory = document.getElementById("directory");
+  directory.innerHTML = ""; // Clear previous
+
+  members.forEach(member => {
+    const card = document.createElement("div");
+    card.classList.add("member-card");
+
+    card.innerHTML = `
+      <img src="${member.image}" alt="${member.name}">
+      <h3>${member.name}</h3>
+      <p>${member.address}</p>
+      <p>${member.phone}</p>
+      <a href="${member.website}" target="_blank">Visit Website</a>
+    `;
+
+    directory.appendChild(card);
+  });
+}
+
+function setupFilters(allMembers) {
+  const filterSelect = document.getElementById("membershipFilter");
+  const gridBtn = document.getElementById("gridBtn");
+  const listBtn = document.getElementById("listBtn");
+  const directory = document.getElementById("directory");
+
+  // Filter by membership
+  filterSelect.addEventListener("change", () => {
+    const level = filterSelect.value;
+    const filtered =
+      level === "all"
+        ? allMembers
+        : allMembers.filter(m => m.membershipLevel == level);
+
+    displayMembers(filtered);
+  });
+
+  // Toggle grid view
+  gridBtn.addEventListener("click", () => {
+    directory.classList.add("grid");
+    directory.classList.remove("list");
+  });
+
+  // Toggle list view
+  listBtn.addEventListener("click", () => {
+    directory.classList.add("list");
+    directory.classList.remove("grid");
+  });
+}
+
+// Run on directory page
+document.addEventListener("DOMContentLoaded", loadDirectory);
 
 
 async function loadMembersAndRender() {
@@ -145,7 +231,6 @@ function renderDirectory(members, membershipFilter = 'all') {
   const directory = document.getElementById('directory');
   if (!directory) return;
 
-  
   directory.innerHTML = '';
 
   const filtered = (membershipFilter === 'all')
@@ -165,39 +250,25 @@ function renderDirectory(members, membershipFilter = 'all') {
   });
 }
 
-
 function setupViewControls() {
   const gridBtn = document.getElementById('gridBtn');
   const listBtn = document.getElementById('listBtn');
-  const membershipSelect = document.getElementById('membershipFilter');
   const directory = document.getElementById('directory');
+  if (!gridBtn || !listBtn || !directory) return;
 
-  if (!directory) return;
-
-  
-  const setGrid = () => {
-    directory.classList.remove('list');
+  gridBtn.addEventListener('click', function() {
     directory.classList.add('grid');
-    gridBtn && gridBtn.setAttribute('aria-pressed', 'true');
-    listBtn && listBtn.setAttribute('aria-pressed', 'false');
-  };
-  const setList = () => {
-    directory.classList.remove('grid');
+    directory.classList.remove('list');
+    gridBtn.setAttribute('aria-pressed', 'true');
+    listBtn.setAttribute('aria-pressed', 'false');
+  });
+
+  listBtn.addEventListener('click', function() {
     directory.classList.add('list');
-    gridBtn && gridBtn.setAttribute('aria-pressed', 'false');
-    listBtn && listBtn.setAttribute('aria-pressed', 'true');
-  };
-
-  if (gridBtn) gridBtn.addEventListener('click', setGrid);
-  if (listBtn) listBtn.addEventListener('click', setList);
-
-  if (membershipSelect) {
-    membershipSelect.addEventListener('change', (e) => {
-      const val = e.target.value;
-      const members = window.__chamberMembers || [];
-      renderDirectory(members, val);
-    });
-  }
+    directory.classList.remove('grid');
+    listBtn.setAttribute('aria-pressed', 'true');
+    gridBtn.setAttribute('aria-pressed', 'false');
+  });
 }
 
 
@@ -321,5 +392,61 @@ async function initWeather() {
 
   }, () => {
     tempEl.textContent = 'Location permission denied';
+  });
+}
+
+// --- Join & Thank You Page JS ---
+export function setJoinPageTimestamp() {
+  const ts = document.getElementById('timestamp');
+  if (ts) ts.value = new Date().toISOString();
+}
+
+export function initMembershipCardAnimation() {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card, i) => {
+    card.style.opacity = 0;
+    setTimeout(() => {
+      card.style.transition = 'opacity 1s, transform 1s';
+      card.style.opacity = 1;
+      card.style.transform = 'translateY(0)';
+    }, 300 + i * 200);
+  });
+}
+
+export function initMembershipModals() {
+  document.querySelectorAll('.info-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const modalId = this.getAttribute('data-modal');
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.style.display = 'block';
+        modal.setAttribute('aria-hidden', 'false');
+      }
+    });
+  });
+  document.querySelectorAll('.close-modal').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const modalId = this.getAttribute('data-close');
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    });
+  });
+}
+
+export function showThankYouFormData() {
+  function getParam(name) {
+    const url = new URL(window.location.href);
+    return url.searchParams.get(name) || '';
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    const fields = ['firstName','lastName','email','phone','orgName','timestamp'];
+    fields.forEach(f => {
+      const el = document.getElementById(f);
+      if (el) el.textContent = getParam(f);
+    });
   });
 }
