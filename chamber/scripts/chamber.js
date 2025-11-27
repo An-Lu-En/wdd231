@@ -16,8 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initMenuToggle();
   setFooterDates();
   loadMembersAndRender();
-  setupViewControls();
   initWeather();
+  setJoinPageTimestamp();
+  initMembershipCardAnimation();
+  initMembershipModals();
+  showThankYouFormData();
 });
 function initMenuToggle() {
   const toggle = document.getElementById('menuToggle');
@@ -54,7 +57,25 @@ function initMenuToggle() {
   });
 }
 
-const membersJsonPath = 'members.json';
+function openMenu() {
+  const nav = document.getElementById('mainNav');
+  const toggle = document.getElementById('menuToggle');
+  if (!nav || !toggle) return;
+  nav.classList.add('open');
+  nav.style.display = 'block';
+  toggle.setAttribute('aria-expanded', 'true');
+}
+
+function closeMenu() {
+  const nav = document.getElementById('mainNav');
+  const toggle = document.getElementById('menuToggle');
+  if (!nav || !toggle) return;
+  nav.classList.remove('open');
+  nav.style.display = '';
+  toggle.setAttribute('aria-expanded', 'false');
+}
+
+const membersJsonPath = 'data/members.json';
 
 // === DIRECTORY PAGE SETUP ===
 async function loadDirectory() {
@@ -62,10 +83,10 @@ async function loadDirectory() {
   if (!directory) return;
 
   try {
-    const response = await fetch('members.json');
+    const response = await fetch(membersJsonPath);
     const members = await response.json();
 
-    displayMembers(members);
+    renderDirectory(members);
     setupFilters(members);
   } catch (err) {
     console.error("Error loading members:", err);
@@ -107,7 +128,7 @@ function setupFilters(allMembers) {
         ? allMembers
         : allMembers.filter(m => m.membershipLevel == level);
 
-    displayMembers(filtered);
+    renderDirectory(filtered);
   });
 
   // Toggle grid view
@@ -123,8 +144,7 @@ function setupFilters(allMembers) {
   });
 }
 
-// Run on directory page
-document.addEventListener("DOMContentLoaded", loadDirectory);
+//
 
 
 async function loadMembersAndRender() {
@@ -138,6 +158,7 @@ async function loadMembersAndRender() {
 
     renderDirectory(members);
     renderSpotlightsIfNeeded(members);
+    setupFilters(members);
   } catch (err) {
     console.error('Error loading members JSON:', err);
     const dir = document.getElementById('directory');
@@ -396,12 +417,12 @@ async function initWeather() {
 }
 
 // --- Join & Thank You Page JS ---
-export function setJoinPageTimestamp() {
+function setJoinPageTimestamp() {
   const ts = document.getElementById('timestamp');
   if (ts) ts.value = new Date().toISOString();
 }
 
-export function initMembershipCardAnimation() {
+function initMembershipCardAnimation() {
   const cards = document.querySelectorAll('.card');
   cards.forEach((card, i) => {
     card.style.opacity = 0;
@@ -413,7 +434,7 @@ export function initMembershipCardAnimation() {
   });
 }
 
-export function initMembershipModals() {
+function initMembershipModals() {
   document.querySelectorAll('.info-link').forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
@@ -437,7 +458,7 @@ export function initMembershipModals() {
   });
 }
 
-export function showThankYouFormData() {
+function showThankYouFormData() {
   function getParam(name) {
     const url = new URL(window.location.href);
     return url.searchParams.get(name) || '';
