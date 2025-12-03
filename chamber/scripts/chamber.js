@@ -1,32 +1,39 @@
+// === Utility: Set footer dates ===
 function setFooterDates() {
+  // Get footer elements for last modified and copyright year
   const lastModifiedEl = document.getElementById('lastModified');
   const copyYearEl = document.getElementById('copyYear');
 
   if (lastModifiedEl) {
-    
+    // Set last modified date from document metadata
     const lm = document.lastModified ? new Date(document.lastModified) : new Date();
     lastModifiedEl.textContent = lm.toLocaleString();
   }
   if (copyYearEl) {
+    // Set copyright year to current year
     copyYearEl.textContent = new Date().getFullYear();
   }
 }
 
+// === DOMContentLoaded: Initialize all page logic ===
 document.addEventListener('DOMContentLoaded', () => {
-  initMenuToggle();
-  setFooterDates();
-  loadMembersAndRender();
-  initWeather();
-  setJoinPageTimestamp();
-  initMembershipCardAnimation();
-  initMembershipModals();
-  showThankYouFormData();
+  initMenuToggle(); // Hamburger menu logic
+  setFooterDates(); // Footer date logic
+  loadMembersAndRender(); // Directory & spotlights
+  initWeather(); // Weather widget
+  setJoinPageTimestamp(); // Join form timestamp
+  initMembershipCardAnimation(); // Animate join cards
+  initMembershipModals(); // Modal popups for join page
+  showThankYouFormData(); // Thank you page data
 });
+
+// === Hamburger Menu Logic ===
 function initMenuToggle() {
   const toggle = document.getElementById('menuToggle');
   const nav = document.getElementById('mainNav');
   if (!toggle || !nav) return;
 
+  // Toggle menu open/close on click
   toggle.addEventListener('click', () => {
     const expanded = toggle.getAttribute('aria-expanded') === 'true';
     toggle.setAttribute('aria-expanded', String(!expanded));
@@ -58,6 +65,7 @@ function initMenuToggle() {
 }
 
 function openMenu() {
+  // Show mobile nav
   const nav = document.getElementById('mainNav');
   const toggle = document.getElementById('menuToggle');
   if (!nav || !toggle) return;
@@ -67,6 +75,7 @@ function openMenu() {
 }
 
 function closeMenu() {
+  // Hide mobile nav
   const nav = document.getElementById('mainNav');
   const toggle = document.getElementById('menuToggle');
   if (!nav || !toggle) return;
@@ -79,6 +88,7 @@ const membersJsonPath = 'data/members.json';
 
 // === DIRECTORY PAGE SETUP ===
 async function loadDirectory() {
+  // Loads member data and renders directory page
   const directory = document.getElementById("directory");
   if (!directory) return;
 
@@ -95,6 +105,7 @@ async function loadDirectory() {
 }
 
 function displayMembers(members) {
+  // Renders member cards for directory
   const directory = document.getElementById("directory");
   directory.innerHTML = ""; // Clear previous
 
@@ -115,6 +126,7 @@ function displayMembers(members) {
 }
 
 function setupFilters(allMembers) {
+  // Setup filter and view toggle controls for directory
   const filterSelect = document.getElementById("membershipFilter");
   const gridBtn = document.getElementById("gridBtn");
   const listBtn = document.getElementById("listBtn");
@@ -144,16 +156,14 @@ function setupFilters(allMembers) {
   });
 }
 
-//
-
-
+// Loads and renders member directory and spotlights
 async function loadMembersAndRender() {
+  // Loads members and renders directory & spotlights
   try {
     const resp = await fetch(membersJsonPath);
     if (!resp.ok) throw new Error(`Failed to fetch ${membersJsonPath}: ${resp.statusText}`);
     const members = await resp.json();
 
-    
     window.__chamberMembers = members;
 
     renderDirectory(members);
@@ -166,13 +176,13 @@ async function loadMembersAndRender() {
   }
 }
 
-
+// Build a member card for directory
 function buildMemberCard(member) {
+  // Builds a member card element for directory
   const wrapper = document.createElement('article');
   wrapper.className = 'member-card';
   wrapper.setAttribute('data-membership', String(member.membershipLevel || 1));
 
-  
   const img = document.createElement('img');
   img.className = 'logo-thumb';
   img.alt = `${member.name} logo`;
@@ -223,14 +233,15 @@ function buildMemberCard(member) {
   info.appendChild(desc);
   info.appendChild(actions);
 
-  
   wrapper.appendChild(img);
   wrapper.appendChild(info);
 
   return wrapper;
 }
 
+// Get membership label for card
 function membershipLabel(level) {
+  // Returns membership label string
   switch (Number(level)) {
     case 3: return 'Gold Member';
     case 2: return 'Silver Member';
@@ -238,7 +249,9 @@ function membershipLabel(level) {
   }
 }
 
+// Strip www from URLs for display
 function stripHostname(url) {
+  // Utility: strips www. from hostname for display
   try {
     const u = new URL(url);
     return u.hostname.replace('www.', '');
@@ -247,8 +260,9 @@ function stripHostname(url) {
   }
 }
 
-
+// Render all member cards
 function renderDirectory(members, membershipFilter = 'all') {
+  // Renders member cards for directory, with optional filter
   const directory = document.getElementById('directory');
   if (!directory) return;
 
@@ -272,6 +286,7 @@ function renderDirectory(members, membershipFilter = 'all') {
 }
 
 function setupViewControls() {
+  // Setup grid/list toggle buttons for directory
   const gridBtn = document.getElementById('gridBtn');
   const listBtn = document.getElementById('listBtn');
   const directory = document.getElementById('directory');
@@ -292,24 +307,22 @@ function setupViewControls() {
   });
 }
 
-
+// Render spotlights for directory page
 function renderSpotlightsIfNeeded(allMembers) {
+  // Renders spotlight cards for gold/silver members on homepage
   const container = document.getElementById('spotlight-container');
   if (!container) return; 
 
-  
   const pool = allMembers.filter(m => Number(m.membershipLevel) >= 2);
   if (!pool.length) {
     container.innerHTML = '<p>No spotlight members found.</p>';
     return;
   }
 
-  
   const shuffled = pool.sort(() => Math.random() - 0.5);
   const count = Math.min(3, Math.max(2, Math.floor(Math.random() * 3) + 2)); // choose 2 or 3
   const chosen = shuffled.slice(0, count);
 
-  
   const wrapper = document.createElement('div');
   wrapper.className = 'spotlight-cards';
 
@@ -341,7 +354,9 @@ function renderSpotlightsIfNeeded(allMembers) {
   container.appendChild(wrapper);
 }
 
+// === WEATHER WIDGET ===
 async function initWeather() {
+  // Loads weather and forecast using OpenWeather API
   const tempEl = document.getElementById('current-temp');
   const descEl = document.getElementById('weather-desc');
   const forecastEl = document.getElementById('forecast');
@@ -390,6 +405,7 @@ async function initWeather() {
         return;
       }
 
+      // Group forecast by day, show next 3 days
       const daily = {};
       forecastData.list.forEach(item => {
         const date = item.dt_txt.split(" ")[0];
@@ -418,11 +434,13 @@ async function initWeather() {
 
 // --- Join & Thank You Page JS ---
 function setJoinPageTimestamp() {
+  // Sets hidden timestamp field on join form
   const ts = document.getElementById('timestamp');
   if (ts) ts.value = new Date().toISOString();
 }
 
 function initMembershipCardAnimation() {
+  // Animates membership cards on join page
   const cards = document.querySelectorAll('.card');
   cards.forEach((card, i) => {
     card.style.opacity = 0;
@@ -435,6 +453,7 @@ function initMembershipCardAnimation() {
 }
 
 function initMembershipModals() {
+  // Handles opening/closing info modals on join page
   document.querySelectorAll('.info-link').forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
@@ -459,6 +478,7 @@ function initMembershipModals() {
 }
 
 function showThankYouFormData() {
+  // Populates thank you page with submitted form data
   function getParam(name) {
     const url = new URL(window.location.href);
     return url.searchParams.get(name) || '';
@@ -471,3 +491,72 @@ function showThankYouFormData() {
     });
   });
 }
+
+// === DISCOVER PAGE SETUP ===
+// Only import pointsOfInterest if on discover.html
+let pointsOfInterest;
+if (document.getElementById('discoverGrid')) {
+  import('../data/discover.mjs').then(module => {
+    pointsOfInterest = module.pointsOfInterest;
+    loadDiscoverPage();
+  });
+}
+
+function loadDiscoverPage() {
+  // Loads discover page visitor message and points of interest cards
+  const visitorMessage = document.getElementById('visitorMessage');
+  if (visitorMessage) {
+    // Show message based on last visit (stored in localStorage)
+    const lastVisit = localStorage.getItem('chamberLastVisit');
+    const now = Date.now();
+    let message = '';
+    if (!lastVisit) {
+      message = 'Welcome! Let us know if you have any questions.';
+    } else {
+      const days = Math.floor((now - Number(lastVisit)) / (1000 * 60 * 60 * 24));
+      if (days < 1) {
+        message = 'Back so soon! Awesome!';
+      } else if (days === 1) {
+        message = 'You last visited 1 day ago.';
+      } else {
+        message = `You last visited ${days} days ago.`;
+      }
+    }
+    visitorMessage.textContent = message;
+    localStorage.setItem('chamberLastVisit', now);
+  }
+
+  // Render points of interest cards
+  const grid = document.getElementById('discoverGrid');
+  if (grid && pointsOfInterest) {
+    grid.innerHTML = '';
+    pointsOfInterest.forEach((poi, i) => {
+      const card = document.createElement('section');
+      card.className = 'discover-card';
+      card.innerHTML = `
+        <h2>${poi.title}</h2>
+        <figure><img src="${poi.image}" alt="${poi.title}" loading="lazy"></figure>
+        <address>${poi.address}</address>
+        <p>${poi.description}</p>
+        <button>Learn More</button>
+      `;
+      grid.appendChild(card);
+    });
+  }
+}
+
+// === DOMContentLoaded: Discover page logic ===
+document.addEventListener('DOMContentLoaded', () => {
+  initMenuToggle();
+  setFooterDates();
+  loadMembersAndRender();
+  initWeather();
+  setJoinPageTimestamp();
+  initMembershipCardAnimation();
+  initMembershipModals();
+  showThankYouFormData();
+
+  if (document.getElementById('discoverGrid')) {
+    loadDiscoverPage(); // Only run on discover.html
+  }
+});
